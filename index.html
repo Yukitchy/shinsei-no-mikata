@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>申請のミカタ（仮称）— 生活保護 申請準備チェックリスト サービス提案</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --accent:#177E74; --accent2:#E8843C; --ink:#26323A; --sub:#5D6B70;
+  --bg:#EFEDE8; --card:#FFFFFF; --line:#E3E0D9; --deco:rgba(255,255,255,.65);
+  --ease-out:cubic-bezier(.22,1,.36,1); --spring:cubic-bezier(.34,1.56,.64,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.85;font-size:16px;-webkit-font-smoothing:antialiased}
+body,p,li,td,div,span,b,small,button,a,h1,h2,h3{word-break:auto-phrase;line-break:strict;overflow-wrap:anywhere}
+h1,h2,h3,.eyebrow,.btn,.chip-u{text-wrap:balance}
+p{max-width:65ch;text-wrap:pretty}
+h1,h2{font-family:"M PLUS Rounded 1c",sans-serif;font-weight:800;line-height:1.4;letter-spacing:.01em}
+.wrap{max-width:1020px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
+section{position:relative;overflow:hidden;padding:76px 0}
+section.alt{background:var(--card)}
+section::before{content:"";position:absolute;pointer-events:none;z-index:0}
+section:nth-of-type(4n+1)::before{top:-40px;right:-60px;width:220px;height:220px;background:var(--deco);border-radius:0 0 0 100%}
+section:nth-of-type(4n+2)::before{bottom:24px;right:-10px;width:180px;height:140px;background-image:radial-gradient(var(--deco) 2px,transparent 2px);background-size:18px 18px}
+section:nth-of-type(4n+3)::before{top:60px;right:-70px;width:200px;height:200px;border-radius:50%;border:14px solid var(--deco)}
+section:nth-of-type(4n+4)::before{top:40px;right:-40px;width:150px;height:26px;border-radius:999px;background:var(--deco);box-shadow:0 52px 0 -4px var(--deco),0 104px 0 8px var(--deco)}
+section.alt::before{--deco:#F0EEE8}
+/* header */
+.top{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
+.logo{font-family:"M PLUS Rounded 1c",sans-serif;font-weight:800;font-size:22px;color:var(--accent);letter-spacing:.06em}
+.logo small{font-size:13px;color:var(--sub);font-weight:700;margin-left:8px}
+/* hero */
+.hero{padding:36px 0 80px}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:44px;align-items:center}
+.eyebrow{letter-spacing:.14em;font-size:13px;font-weight:800;color:var(--accent2)}
+h1{font-size:46px;margin:14px 0 18px}
+.u{background:linear-gradient(transparent 62%,#F6C98F 62%);padding:0 3px}
+.lead{color:var(--sub);font-size:17px}
+.cta-row{display:flex;gap:14px;margin-top:28px;flex-wrap:wrap;align-items:center}
+.btn{display:inline-block;font-family:"M PLUS Rounded 1c",sans-serif;font-weight:800;font-size:16px;text-decoration:none;border-radius:999px;padding:14px 30px;transition:transform .12s var(--spring),box-shadow .12s ease}
+.btn.primary{background:var(--accent2);color:#fff;box-shadow:0 10px 24px rgba(232,132,60,.35)}
+.btn.ghost{color:var(--accent);background:none}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:translateY(0) scale(.98)}
+.hero-note{font-size:13px;color:var(--sub);margin-top:12px}
+/* phone mock */
+.stage{position:relative;display:grid;place-items:center}
+.stage::before{content:"";position:absolute;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(23,126,116,.18),transparent 70%);filter:blur(6px)}
+.phone{position:relative;width:340px;background:#101b1d;border-radius:44px;padding:10px;
+  box-shadow:0 2px 6px rgba(20,60,60,.10),0 14px 28px rgba(20,60,60,.16),0 36px 60px rgba(20,60,60,.22);
+  animation:in .9s var(--ease-out) both}
+@keyframes in{from{opacity:0;transform:translateY(26px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+.phone .scr{background:#fff;border-radius:35px;overflow:hidden;height:640px}
+.phone iframe{width:100%;height:100%;border:0}
+/* sections */
+.sec-t{font-size:30px;margin-bottom:14px}
+.sec-lead{color:var(--sub);margin-bottom:36px}
+/* memo bubble */
+.memo-flex{display:grid;grid-template-columns:auto 1fr;gap:36px;align-items:start}
+.bubble{background:#ECEAE4;border-radius:20px 20px 20px 6px;padding:18px 22px;max-width:300px;font-size:14px;line-height:2}
+.bubble .stamp{display:block;text-align:right;font-size:13px;color:var(--sub);margin-top:6px}
+.pains{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:8px}
+.pain{background:#F2F0EA;border-radius:18px;padding:22px}
+.pain .emo{font-size:30px}
+.pain h3{font-size:17px;margin:8px 0 6px}
+.pain p{font-size:14px;color:var(--sub)}
+/* features */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.step{background:var(--card);border-radius:18px;padding:26px 24px}
+.step .n{font-family:"M PLUS Rounded 1c",sans-serif;font-weight:800;font-size:34px;color:var(--accent);font-variant-numeric:tabular-nums}
+.step h3{font-size:18px;margin:6px 0 8px}
+.step p{font-size:14px;color:var(--sub)}
+/* users */
+.users{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.user{background:#F2F0EA;border-radius:18px;padding:20px;text-align:center}
+.user .emo{font-size:32px}
+.user h3{font-size:15px;margin-top:8px}
+.user p{font-size:13px;color:var(--sub);margin-top:4px;text-align:left}
+/* why now */
+.why-grid{display:grid;grid-template-columns:auto 1fr;gap:44px;align-items:center}
+.stat{font-family:"M PLUS Rounded 1c",sans-serif;font-weight:800;color:var(--accent);font-size:20px;line-height:1.3}
+.stat b{font-size:64px;display:block;font-variant-numeric:tabular-nums}
+.stat small{font-size:13px;color:var(--sub);font-weight:700}
+/* model + roadmap */
+.model{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:44px}
+.mcard{background:var(--card);border-radius:18px;padding:26px 24px}
+.mcard h3{font-size:18px;margin-bottom:8px}
+.mcard p{font-size:14px;color:var(--sub)}
+.mcard .tag{display:inline-block;font-size:13px;font-weight:800;color:#fff;background:var(--accent);border-radius:999px;padding:2px 12px;margin-bottom:10px}
+.mcard:last-child .tag{background:var(--accent2)}
+.road{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.rstep{border-top:4px solid var(--line);padding-top:14px}
+.rstep.now{border-top-color:var(--accent2)}
+.rstep .v{font-size:13px;font-weight:800;letter-spacing:.14em;color:var(--sub)}
+.rstep.now .v{color:var(--accent2)}
+.rstep h3{font-size:16px;margin:4px 0}
+.rstep p{font-size:14px;color:var(--sub)}
+/* final cta */
+.final{text-align:center}
+.final .sec-t{margin-bottom:8px}
+footer{padding:34px 0 44px;font-size:13px;color:var(--sub)}
+footer p{max-width:none}
+/* reveal */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s var(--ease-out),transform .6s var(--ease-out)}
+.reveal.in{opacity:1;transform:none}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+@media(max-width:860px){
+  .hero .wrap{grid-template-columns:1fr}
+  .stage{order:2;margin-top:10px}
+  h1{font-size:34px}
+  .pains,.steps,.road{grid-template-columns:1fr}
+  .users{grid-template-columns:1fr 1fr}
+  .memo-flex,.why-grid,.model{grid-template-columns:1fr}
+  section{padding:56px 0}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap top">
+  <div class="logo">申請のミカタ<small>（仮称）v0 提案</small></div>
+  <a class="btn ghost" href="app.html">プロトタイプ →</a>
+</div>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow">サービス提案 — ササキチさん × ユウキ</div>
+      <h1>窓口に行く前に、<br><span class="u">ミカタがいる。</span></h1>
+      <p class="lead">生活保護の相談・申請には、通帳・保険・家賃・車…と用意するものがたくさん。「申請のミカタ」は、行く前にスマホで準備できる持ち物チェックリストです。</p>
+      <div class="cta-row">
+        <a class="btn primary" href="app.html">プロトタイプを触ってみる</a>
+        <a class="btn ghost" href="#story">提案を読む ↓</a>
+      </div>
+      <p class="hero-note">右のスマホ画面は実際に動きます（チェックを押してみてください）</p>
+    </div>
+    <div class="stage">
+      <div class="phone"><div class="scr"><iframe src="app.html" title="そろう プロトタイプ"></iframe></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="story">
+  <div class="wrap">
+    <h2 class="sec-t reveal">きっかけは、実際の相談窓口</h2>
+    <p class="sec-lead reveal">2026年8月、ササキチさんが生活保護の相談に行って持ち帰ったメモ。事前に知らされないまま、これだけの準備を求められました。</p>
+    <div class="memo-flex">
+      <div class="bubble reveal">現在の口座紐付け<br>※収入証明<br>保険の確認<br>生命保険などの確認<br>財産<br>バイクや車<br>マイナンバー<br>保険証<br>免許<br>財布の金額<br>通帳の3ヶ月の明細<br>給料明細<br>家賃<br>家賃証明書<span class="stamp">午後 1:26</span></div>
+      <div class="pains">
+        <div class="pain reveal"><div class="emo">🔁</div><h3>出直しになる</h3><p>足りないものがあると、後日また役所へ。生活が苦しい時ほど、この往復がいちばん重い。</p></div>
+        <div class="pain reveal"><div class="emo">❓</div><h3>言葉が分からない</h3><p>「口座紐付け」「家賃証明書」— 何をどう用意すればいいのか、メモだけでは分からない。</p></div>
+        <div class="pain reveal"><div class="emo">🙊</div><h3>聞ける人がいない</h3><p>周りに経験者は少なく、ネットの情報は自治体ごとにバラバラ。ひとりで調べるのはしんどい。</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2 class="sec-t reveal">使い方は、3ステップ</h2>
+    <p class="sec-lead reveal">アプリのインストール不要。ブラウザで開いて、そのまま使えます。</p>
+    <div class="steps">
+      <div class="step reveal"><div class="n">1</div><h3>状況をタップ</h3><p>「働いている？」「賃貸？」「車がある？」— 3つ答えるだけで、あなたに必要なものだけが残ります。</p></div>
+      <div class="step reveal"><div class="n">2</div><h3>ひとつずつ、そろえる</h3><p>各項目に「なぜ必要か」「入手方法」「見つからない場合の代替手段」を短くまとめています。</p></div>
+      <div class="step reveal"><div class="n">3</div><h3>そのまま窓口へ</h3><p>「あと3項目で申請に行けます」— 進み具合がひと目で分かる。印刷して持ち物リストとして持って行けます。</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <h2 class="sec-t reveal">使う人</h2>
+    <p class="sec-lead reveal">本人だけのツールにしない。「隣で支える人」まで届けます。</p>
+    <div class="users">
+      <div class="user reveal"><div class="emo">🙋</div><h3>申請する本人</h3><p>不安な手続きを、ひとつずつ消せるタスクに変える。</p></div>
+      <div class="user reveal"><div class="emo">🤝</div><h3>家族・友人</h3><p>あのメモのように、隣で支える人が「これを見て」と渡せる。</p></div>
+      <div class="user reveal"><div class="emo">🏢</div><h3>支援団体・CW</h3><p>ケースワーカーや支援NPOが、初回面談の前に案内できる。</p></div>
+      <div class="user reveal"><div class="emo">🏛</div><h3>自治体窓口</h3><p>QRコードで配布。「出直し」が減れば窓口の負担も減る。</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2 class="sec-t reveal">なぜ、いま作るか</h2>
+    <div class="why-grid">
+      <div class="stat reveal"><b>約200万人</b>全国の生活保護利用者<br><small>※厚生労働省の被保護者調査より（規模感）</small></div>
+      <p class="reveal">物価の上昇もあり、生活保護の相談はこれから増えていくと見られています。一方で「入口」の情報は今も分かりにくいまま。準備不足による出直しは、本人にも窓口にも負担です。両方の時間を減らせるのが、このチェックリストです。</p>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <h2 class="sec-t reveal">収益の設計と、これから</h2>
+    <div class="model">
+      <div class="mcard reveal"><span class="tag">本人向け</span><h3>ずっと無料・広告なし</h3><p>いちばん苦しい時に使うツールに、広告は出さない。登録も不要。ブラウザで開くだけ。</p></div>
+      <div class="mcard reveal"><span class="tag">収益</span><h3>自治体・支援団体向けカスタマイズ版</h3><p>自治体ごとの必要書類・窓口案内・多言語対応を載せた配布用バージョンを、自治体・社会福祉協議会・支援NPOに提供する。</p></div>
+    </div>
+    <div class="road">
+      <div class="rstep now reveal"><div class="v">V0 — いまここ</div><h3>プロトタイプ</h3><p>ササキチさんの実体験メモをもとにした汎用チェックリスト。</p></div>
+      <div class="rstep reveal"><div class="v">V1</div><h3>質問分岐・自治体テンプレ</h3><p>状況の質問を増やし、自治体別の持ち物リストに対応。</p></div>
+      <div class="rstep reveal"><div class="v">V2</div><h3>やさしい日本語・多言語</h3><p>支援者との共有機能。外国籍の方や読みが苦手な方にも。</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <h2 class="sec-t reveal">まずは、触ってみてください</h2>
+    <p class="sec-lead reveal" style="margin:0 auto 24px;max-width:34em">これは提案用のプロトタイプ v0 です。名前は「申請のミカタ（仮称）」— 味方であり、やり方の見方。正式名称はササキチさんと決めたい。</p>
+    <a class="btn primary reveal" href="app.html">プロトタイプを開く</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>※ 必要書類は自治体・状況によって異なります。このページはサービス提案用のプロトタイプであり、制度の公式案内ではありません。</p>
+    <p>発案: ササキチさん ／ 制作: ユウキ + Claude（2026年8月）</p>
+  </div>
+</footer>
+
+<script>
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}
+}),{threshold:.15});
+document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+</script>
+<script>if(["localhost","127.0.0.1"].includes(location.hostname)){const s=document.createElement("script");s.src="devbar.js";document.body.appendChild(s);}</script>
+</body>
+</html>

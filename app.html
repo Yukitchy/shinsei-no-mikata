@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>申請のミカタ — 生活保護 申請準備チェックリスト</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --accent:#177E74; --accent2:#E8843C; --ink:#26323A; --sub:#5D6B70;
+  --bg:#EFEDE8; --card:#FFFFFF; --line:#E3E0D9; --ok:#2E9E6B;
+  --ease-out:cubic-bezier(.22,1,.36,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.75;font-size:15px;-webkit-font-smoothing:antialiased}
+body,p,li,div,span,summary,button{word-break:auto-phrase;line-break:strict;overflow-wrap:anywhere}
+h1,h2,h3,.chip{text-wrap:balance}
+.app{max-width:430px;margin:0 auto;min-height:100vh;padding-bottom:96px}
+header{background:var(--accent);color:#fff;padding:18px 20px 16px}
+header .logo{font-family:"M PLUS Rounded 1c",sans-serif;font-weight:800;font-size:26px;letter-spacing:.06em}
+header .sub{font-size:13px;opacity:.92}
+.progress{background:var(--card);margin:14px 16px;border-radius:18px;padding:16px 18px}
+.progress .big{font-family:"M PLUS Rounded 1c",sans-serif;font-weight:800;font-size:clamp(15px,4.8vw,20px);white-space:nowrap}
+.progress .big em{font-style:normal;color:var(--accent2);font-size:1.5em;font-variant-numeric:tabular-nums}
+.bar{height:10px;background:#E7E4DD;border-radius:999px;margin-top:10px;overflow:hidden}
+.bar i{display:block;height:100%;width:0%;background:var(--accent);border-radius:999px;transition:width .4s var(--ease-out)}
+.benefit{background:var(--card);margin:0 16px 18px;border-radius:18px;padding:14px 18px 12px}
+.benefit .b-t{font-size:13px;font-weight:800;letter-spacing:.14em;color:var(--sub);margin-bottom:2px}
+.brow{display:flex;gap:12px;padding:10px 0;border-top:1px solid var(--line);align-items:flex-start}
+.brow:first-of-type{border-top:none}
+.brow .emo{font-size:22px;line-height:1.4}
+.brow b{font-size:14px;display:block}
+.brow .d{font-size:13px;color:var(--sub)}
+.benefit .b-note{font-size:13px;color:var(--sub);opacity:.85;margin-top:4px}
+.qs{margin:0 16px 6px;padding:2px 4px}
+.qs .t{font-size:13px;font-weight:700;color:var(--sub);margin-bottom:8px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:none;font:inherit;font-size:13px;font-weight:700;padding:8px 14px;border-radius:999px;background:#E1DED6;color:var(--sub);cursor:pointer;transition:transform .12s}
+.chip.on{background:var(--accent);color:#fff}
+.chip:active{transform:scale(.96)}
+section.cat{margin:18px 16px 0}
+.cat h2{font-size:13px;font-weight:800;letter-spacing:.14em;color:var(--sub);margin:0 4px 8px}
+.list{background:var(--card);border-radius:18px;overflow:hidden}
+.item{display:flex;gap:12px;padding:14px 16px;border-top:1px solid var(--line);align-items:flex-start}
+.item:first-child{border-top:none}
+.chk{flex:0 0 30px;height:30px;margin-top:2px;border-radius:50%;border:2.5px solid #C9C5BC;background:transparent;color:transparent;font-size:16px;line-height:1;cursor:pointer;transition:all .15s}
+.item.done .chk{background:var(--ok);border-color:var(--ok);color:#fff}
+.item .name{font-weight:700;font-size:15px}
+.item .why{font-size:13px;color:var(--sub);margin-top:2px}
+.item.done .name{text-decoration:line-through;color:var(--sub)}
+.item.done .why{opacity:.6}
+details{margin-top:6px}
+summary{font-size:13px;color:var(--accent);font-weight:700;cursor:pointer;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"▸ "}
+details[open] summary::before{content:"▾ "}
+details p{font-size:13px;color:var(--sub);background:#F4F2EC;border-radius:10px;padding:8px 12px;margin-top:6px}
+details p b{color:var(--accent)}
+.congrats{display:none;margin:14px 16px;background:var(--accent);color:#fff;border-radius:18px;padding:14px 18px;font-weight:700}
+.congrats.show{display:block}
+.note{margin:22px 20px 0;font-size:13px;color:var(--sub)}
+.reset{display:block;margin:14px auto 0;background:none;border:none;font:inherit;font-size:13px;color:var(--sub);text-decoration:underline;cursor:pointer}
+.actions{position:fixed;bottom:0;left:0;right:0;display:flex;justify-content:center;padding:12px 16px calc(12px + env(safe-area-inset-bottom));pointer-events:none}
+.btn-print{pointer-events:auto;font-family:"M PLUS Rounded 1c",sans-serif;font-weight:800;font-size:16px;border:none;background:var(--accent2);color:#fff;border-radius:999px;padding:14px 28px;box-shadow:0 10px 24px rgba(232,132,60,.35);cursor:pointer;transition:transform .12s}
+.btn-print:active{transform:scale(.97)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media print{
+  body{background:#fff}
+  header .sub,.qs,.actions,.reset,details,.congrats,.bar,.benefit{display:none!important}
+  .item{page-break-inside:avoid}
+  .chk{border-color:#333!important;background:#fff!important;color:transparent!important}
+  .item.done .chk{background:#fff!important;color:#333!important}
+}
+</style>
+</head>
+<body>
+<div class="app">
+<header><div class="logo">申請のミカタ</div><div class="sub">生活保護 申請準備チェックリスト（プロトタイプ v0）</div></header>
+<div class="progress"><div class="big" id="ptext"></div><div class="bar"><i id="pbar"></i></div></div>
+<div class="congrats" id="congrats">🎉 準備完了。印刷して、そのまま窓口へどうぞ。</div>
+<div class="benefit">
+<div class="b-t">申請が通ると</div>
+<div class="brow"><div class="emo">💴</div><div><b>毎月の生活費が支給される</b><div class="d">都市部の単身でおおむね月7万円台。家賃とは別に支給。</div></div></div>
+<div class="brow"><div class="emo">🏠</div><div><b>家賃も支給される</b><div class="d">上限の範囲内で実費支給（例: 東京23区の単身で上限53,700円）。</div></div></div>
+<div class="brow"><div class="emo">🏥</div><div><b>医療費の自己負担がゼロになる</b><div class="d">病院代も薬代もかからない。国民健康保険料・国民年金保険料の支払いも免除。</div></div></div>
+<div class="brow"><div class="emo">⏱</div><div><b>結果は原則14日以内に出る</b><div class="d">申請から原則14日（調査が必要な場合でも最長30日）で決定される。</div></div></div>
+<div class="b-note">※ 金額は地域・世帯の人数で変わります。準備がそろっているほど、決定までがスムーズです。</div>
+</div>
+<div class="qs"><div class="t">あなたの状況（タップで切替）</div>
+<div class="chips">
+<button class="chip on" data-q="income">働いて収入がある</button>
+<button class="chip on" data-q="rent">賃貸に住んでいる</button>
+<button class="chip on" data-q="vehicle">車・バイクを持っている</button>
+</div></div>
+<div id="cats"></div>
+<p class="note">※ 必要な書類は自治体や状況によって異なります。すべてそろっていなくても相談はできます。まず窓口に相談することが第一歩です。</p>
+<button class="reset" id="reset">チェックをリセット</button>
+<div class="actions"><button class="btn-print" id="print">🖨 印刷して持っていく</button></div>
+</div>
+<script>
+const ITEMS=[
+ {cat:"🆔 身分・本人確認",list:[
+  {id:"mynum",name:"マイナンバーカード（か通知カード）",why:"本人確認と番号の記載に使う",how:{
+   main:"カードが無ければ、昔届いた紙の「通知カード」でもOK。番号が分かればよい。",
+   lost:"両方無い→市区町村の窓口で「マイナンバー入りの住民票」を取れば番号が分かる（数百円）。それも難しければ「無い」と伝えるだけで大丈夫。カードが無いことで申請が断られることはない。",
+   tip:"申請書に番号を書く欄があるので、番号のメモだけでも持っていくと1往復減る。"}},
+  {id:"hoken",name:"健康保険証（か資格確認書）",why:"いまどの保険に入っているかの確認",how:{
+   main:"手元の保険証・資格確認書・マイナ保険証のどれか。2024年12月から紙の保険証は新規発行されなくなったので、代わりに届いた「資格確認書」でOK。",
+   lost:"会社を辞めた直後で何も無い→「退職して切り替え前」とそのまま伝える。退職日が分かる書類（離職票・退職証明書）があると話が早い。",
+   tip:"国保の保険料を滞納していても申請には影響しない。隠さず正直に。"}},
+  {id:"menkyo",name:"運転免許証（あれば）",why:"顔写真付きの本人確認",how:{
+   main:"あれば財布から出しておくだけ。",
+   lost:"顔写真付きの身分証が何も無い→年金手帳・郵便物・公共料金の領収書など「氏名と住所が分かるもの2点」で通ることが多い。無いなら無いで相談できる。"}}]},
+ {cat:"💰 収入とお金",list:[
+  {id:"kyuryo",name:"給料明細（直近1〜3ヶ月分）",cond:"income",why:"収入額の証明",how:{
+   main:"紙でなくてもOK。Web明細ならスマホの画面かスクショ、できればコンビニ印刷。3ヶ月分あると審査がスムーズ。",
+   lost:"なくした・会社に再発行を頼みづらい→給料が振り込まれた通帳の記帳でも収入は示せる。雇用契約書や採用時の労働条件通知書があれば一緒に。",
+   tip:"手渡し給料の場合は、もらった額と日付のメモでもいいので正直に出す。"}},
+  {id:"tsucho",name:"通帳（記帳して3ヶ月分）",why:"お金の出入りの確認",how:{
+   main:"ATMで記帳するだけ。長く記帳していないと「おまとめ記帳」で明細が省略されるので、その時は銀行窓口で直近3ヶ月の「入出金明細書」を発行してもらう。",
+   lost:"通帳をなくした→銀行窓口で再発行（本人確認書類が必要・日数がかかることも）。急ぐなら明細書の発行だけでも間に合う。ネット銀行はアプリの入出金明細を3ヶ月分表示してスクショかPDF→コンビニで印刷。",
+   tip:"「都合の悪い入出金を見せたくない」と隠すと調査で分かって心証が悪くなる。全部見せる方が早く決まる。"}},
+  {id:"koza",name:"口座の一覧メモ",why:"持っている口座の申告に使う",how:{
+   main:"思い出せる口座を全部書き出す。銀行名と支店名だけでもOK。使っていない口座・ネット銀行・学生時代に作った口座も含める。",
+   lost:"どこに口座があったか思い出せない→キャッシュカードの束・スマホの銀行アプリ・メールの「口座開設」検索で洗い出せる。",
+   tip:"役所は金融機関に照会をかけるので、後から見つかるより最初に全部出す方が信頼されて話が早い。"}},
+  {id:"saifu",name:"財布と家の現金を数えておく",why:"当日の所持金を聞かれる",how:{
+   main:"申請に行く日の朝、財布の中と家に置いてある現金を数えてメモしておく。",
+   tip:"「今いくら持っていますか」は窓口の定番質問。その場で数え始めるより、メモを見せる方がずっとスムーズ。"}}]},
+ {cat:"🏠 住まい",list:[
+  {id:"keiyaku",name:"賃貸借契約書",cond:"rent",why:"家賃の額と契約内容の確認",how:{
+   main:"部屋を借りた時にもらった冊子状の書類。更新している場合は更新時の書類でもOK。",
+   lost:"見つからない→管理会社か大家さんに「契約書の写しがほしい」と連絡すれば出してもらえる。どこの管理会社か分からなければ、家賃の振込先名や物件の掲示板・検針票にヒントがある。",
+   tip:"当日に間に合わなければ「後日提出」で申請自体は進められることが多い。"}},
+  {id:"yachin",name:"家賃の額がわかるもの",cond:"rent",why:"住宅扶助（家賃分の保護費）の計算に使う",how:{
+   main:"家賃を払った記録なら何でもOK。通帳の引き落とし記帳・振込履歴・領収書・請求書・管理会社アプリの画面。",
+   tip:"家賃の額は「住宅扶助の上限内か」の判定に使われる大事な数字。共益費・管理費が別かどうかも分かるようにしておくとよい。"}}]},
+ {cat:"📦 財産・保険",list:[
+  {id:"seiho",name:"生命保険・学資保険などの証書",why:"解約返戻金（資産扱い）の確認",how:{
+   main:"保険証券か、毎年届く「契約内容のお知らせ」。見つからなければ保険会社のコールセンターに電話すれば再発行してもらえる（本人確認だけで無料のことが多い）。",
+   lost:"そもそもどの保険に入っていたか分からない→生命保険協会の「契約照会制度」で全社まとめて調べられる（有料・3,000円ほど）。急ぐなら思い当たる会社名のメモだけでも出す。",
+   tip:"見られるポイントは「解約したら戻るお金（解約返戻金）」があるか。掛け捨て型なら継続を認められる場合もあるので、勝手に解約する前に窓口で相談。"}},
+  {id:"kuruma",name:"車検証・バイクの書類",cond:"vehicle",why:"車両という財産の確認",how:{
+   main:"車検証は車のグローブボックスに入っていることが多い。バイクは125cc以下なら市区町村発行の「標識交付証明書」、126cc以上なら軽自動車届出済証か車検証。",
+   tip:"原則は処分を求められるけれど、通勤・通院・障害・地域事情で保有が認められる例もある。勝手に売る前に、まず書類を持って正直に相談を。"}}]}
+];
+const KEY="sorou-v0";
+let st=JSON.parse(localStorage.getItem(KEY)||"null")||{checks:{},q:{income:true,rent:true,vehicle:true}};
+const save=()=>localStorage.setItem(KEY,JSON.stringify(st));
+const cats=document.getElementById("cats");
+function render(){
+ cats.innerHTML="";
+ ITEMS.forEach(c=>{
+  const vis=c.list.filter(it=>!it.cond||st.q[it.cond]);
+  if(!vis.length)return;
+  const sec=document.createElement("section");sec.className="cat";
+  sec.innerHTML="<h2>"+c.cat+"</h2><div class=list></div>";
+  const box=sec.querySelector(".list");
+  vis.forEach(it=>{
+   const d=document.createElement("div");
+   d.className="item"+(st.checks[it.id]?" done":"");
+   let hd="<p>"+it.how.main+"</p>";
+   if(it.how.lost)hd+="<p><b>🔍 見つからない場合：</b>"+it.how.lost+"</p>";
+   if(it.how.tip)hd+="<p><b>💡 ポイント：</b>"+it.how.tip+"</p>";
+   d.innerHTML="<button class=chk aria-label=チェック>✓</button><div style=flex:1><div class=name>"+it.name+"</div><div class=why>"+it.why+"</div><details><summary>入手方法を見る</summary>"+hd+"</details></div>";
+   d.querySelector(".chk").onclick=()=>{st.checks[it.id]=!st.checks[it.id];save();render();};
+   box.appendChild(d);
+  });
+  cats.appendChild(sec);
+ });
+ const all=ITEMS.flatMap(c=>c.list).filter(it=>!it.cond||st.q[it.cond]);
+ const done=all.filter(it=>st.checks[it.id]).length;
+ const left=all.length-done;
+ document.getElementById("ptext").innerHTML=left?("あと <em>"+left+"</em> 項目で申請に行けます"):"準備完了。窓口へどうぞ";
+ document.getElementById("pbar").style.width=(all.length?done/all.length*100:0)+"%";
+ document.getElementById("congrats").classList.toggle("show",left===0);
+}
+document.querySelectorAll(".chip").forEach(ch=>{
+ ch.classList.toggle("on",!!st.q[ch.dataset.q]);
+ ch.onclick=()=>{st.q[ch.dataset.q]=!st.q[ch.dataset.q];save();ch.classList.toggle("on");render();};
+});
+document.getElementById("print").onclick=()=>window.print();
+document.getElementById("reset").onclick=()=>{if(confirm("すべてのチェックを外しますか？")){st.checks={};save();render();}};
+render();
+</script>
+</body>
+</html>
