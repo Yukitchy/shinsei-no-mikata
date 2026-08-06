@@ -36,6 +36,15 @@ header .sub{font-size:13px;opacity:.92}
 .brow b{font-size:14px;display:block}
 .brow .d{font-size:13px;color:var(--sub)}
 .benefit .b-note{font-size:13px;color:var(--sub);opacity:.85;margin-top:4px}
+.elig{background:var(--card);margin:0 16px 18px;border-radius:18px;padding:14px 18px 14px}
+.eq{margin:12px 0 2px}
+.eq .t{font-size:13px;font-weight:700;color:var(--sub);margin-bottom:6px}
+.chip.s{font-size:13px;padding:7px 12px}
+.chip.on2{background:var(--accent2);color:#fff}
+.eres{display:none;margin-top:14px;border-radius:12px;padding:12px 14px;font-size:14px;background:#F4F2EC}
+.eres.show{display:block}
+.eres .grade{font-family:"M PLUS Rounded 1c",sans-serif;font-weight:800;font-size:16px;display:block;margin-bottom:4px}
+.eres.g0 .grade{color:var(--ok)}.eres.g1 .grade{color:var(--accent)}.eres.g2 .grade{color:var(--accent2)}
 .qs{margin:0 16px 6px;padding:2px 4px}
 .qs .t{font-size:13px;font-weight:700;color:var(--sub);margin-bottom:8px}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
@@ -71,7 +80,7 @@ details p b{color:var(--accent)}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 @media print{
   body{background:#fff}
-  header .sub,.qs,.actions,.reset,details,.congrats,.bar,.benefit{display:none!important}
+  header .sub,.qs,.actions,.reset,details,.congrats,.bar,.benefit,.elig{display:none!important}
   .item{page-break-inside:avoid}
   .chk{border-color:#333!important;background:#fff!important;color:transparent!important}
   .item.done .chk{background:#fff!important;color:#333!important}
@@ -90,6 +99,19 @@ details p b{color:var(--accent)}
 <div class="brow"><div class="emo">🏥</div><div><b>医療費の自己負担がゼロになる</b><div class="d">病院代も薬代もかからない。国民健康保険料・国民年金保険料の支払いも免除。</div></div></div>
 <div class="brow"><div class="emo">⏱</div><div><b>結果は原則14日以内に出る</b><div class="d">申請から原則14日（調査が必要な場合でも最長30日）で決定される。</div></div></div>
 <div class="b-note">※ 金額は地域・世帯の人数で変わります。準備がそろっているほど、決定までがスムーズです。</div>
+</div>
+<div class="elig">
+<div class="b-t">もらえるか、30秒チェック</div>
+<div class="eq"><div class="t">世帯の人数（一緒に暮らしている人）</div><div class="chips" data-k="hh">
+<button class="chip s" data-v="0">1人</button><button class="chip s" data-v="1">2人</button><button class="chip s" data-v="2">3人以上</button></div></div>
+<div class="eq"><div class="t">住んでいる地域</div><div class="chips" data-k="area">
+<button class="chip s" data-v="0">大きな都市（23区・政令市など）</button><button class="chip s" data-v="1">それ以外の市</button><button class="chip s" data-v="2">町・村</button></div></div>
+<div class="eq"><div class="t">世帯の月収（手取り。年金・手当も含む）</div><div class="chips" data-k="inc">
+<button class="chip s" data-v="0">ほぼ0円</button><button class="chip s" data-v="5">5万円くらい</button><button class="chip s" data-v="10">10万円くらい</button><button class="chip s" data-v="15">15万円以上</button></div></div>
+<div class="eq"><div class="t">すぐ使える預貯金</div><div class="chips" data-k="sav">
+<button class="chip s" data-v="0">10万円未満</button><button class="chip s" data-v="1">50万円未満</button><button class="chip s" data-v="2">50万円以上</button></div></div>
+<div class="eres" id="eres"></div>
+<div class="b-note">※ 世帯構成・家賃・自治体で基準額が変わるため、あくまで目安です。正確な判定は福祉事務所の窓口でしかできません。</div>
 </div>
 <div class="qs"><div class="t">あなたの状況（タップで切替）</div>
 <div class="chips">
@@ -184,6 +206,37 @@ document.querySelectorAll(".chip").forEach(ch=>{
  ch.classList.toggle("on",!!st.q[ch.dataset.q]);
  ch.onclick=()=>{st.q[ch.dataset.q]=!st.q[ch.dataset.q];save();ch.classList.toggle("on");render();};
 });
+const TH=[[13,11.8,10.5],[18,16.5,14.5],[22,20,18]];
+let eg={};
+document.querySelectorAll(".elig .chips").forEach(g=>{
+ g.querySelectorAll(".chip").forEach(ch=>{
+  ch.onclick=()=>{
+   g.querySelectorAll(".chip").forEach(c=>c.classList.remove("on2"));
+   ch.classList.add("on2");
+   eg[g.dataset.k]=+ch.dataset.v;
+   egResult();
+  };
+ });
+});
+function egResult(){
+ if(["hh","area","inc","sav"].some(k=>eg[k]===undefined))return;
+ const t=TH[eg.hh][eg.area];
+ const el=document.getElementById("eres");
+ let cls,grade,msg;
+ if(eg.inc<=t-3){cls="g0";grade="◎ 受給できる可能性が高い目安です";
+  msg="世帯の収入が、この条件の最低生活費の目安（月"+t+"万円前後）を下回っています。";}
+ else if(eg.inc<=t+1){cls="g1";grade="○ 受給できる可能性があります";
+  msg="最低生活費の目安（月"+t+"万円前後）に近い水準です。家賃の額や通院など、世帯の事情しだいで対象になります。";}
+ else{cls="g2";grade="△ 他の制度も含めて、窓口で相談を";
+  msg="収入だけを見ると基準の目安より上ですが、家賃・医療費・世帯の事情で変わるため断定はできません。生活保護のほかに、住居確保給付金や生活困窮者自立支援の窓口が使える場合もあります。";}
+ if(eg.sav===2){
+  if(cls==="g0"){cls="g1";grade="○ 受給できる可能性があります";}
+  msg+=" 預貯金が多めの場合は、先にそれを生活費に充てる期間を求められることがあります（例外もあるので、あきらめずに相談を）。";
+ }
+ msg+=" どの結果でも、下のリストをそろえて窓口に相談するのが確実です。";
+ el.className="eres show "+cls;
+ el.innerHTML="<span class=grade>"+grade+"</span>"+msg;
+}
 document.getElementById("print").onclick=()=>window.print();
 document.getElementById("reset").onclick=()=>{if(confirm("すべてのチェックを外しますか？")){st.checks={};save();render();}};
 render();
